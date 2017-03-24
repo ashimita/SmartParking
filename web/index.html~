@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-websocket.min.js" charset="utf-8"></script>
+        <script src="app.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <title>Istuary Smart Parking</title>
+        <style media="screen">
+            .table-borderless tbody tr td {
+                border-bottom: solid 5px #fff;
+                border-top: none;
+                border-left: solid 5px #fff;
+                border-right: solid 5px #fff;
+            }
+            .table-borderless tbody tr th,
+            .table-borderless tfoot tr td,
+            .table-borderless tfoot tr th,
+            .table-borderless thead tr td,
+            .table-borderless thead tr th {
+                border: none;
+            }
+            .table-layout {
+                margin-top: 4em;
+                margin-bottom: 4em;
+            }
+            tbody > tr:last-child > td {
+                border-bottom: 0;
+            }
+
+            .panel-primary > .istuary-panel-heading {
+                background-color: #10b1bb;
+            }
+
+            .istuary-panel-primary {
+                background-color: #000000;
+            }
+
+            .istuary-panel-body {
+                padding: 1em 4em 2em;
+            }
+            .istuary-btn-custom {
+              color: #000000 !important;
+              font-weight: bold;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container" ng-app="SmartParkingApp">
+            <div ng-controller="SmartParkingController" class="panel panel-primary istuary-panel-primary">
+                <div class="panel-heading istuary-panel-heading">
+                    <h3 class="text-center">Istuary Smart Parking</h3>
+                </div>
+                <div class="panel-body istuary-panel-body">
+                    <table ng-repeat="parentRow in createParkingLot track by $index" class="table table-borderless table-layout text-center">
+                        <tr ng-repeat="row in parentRow track by $index">
+                            <td ng-repeat="cell in row">
+                                <span ng-class="cell.color">{{ cell.label }}<br>{{cell.timer.totalMilliseconds}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <label>Occupied:</label>
+            <span class="btn btn-danger"></span><br>            
+            <label>Empty:</label>
+            <span class="btn btn-success"></span><br>
+        </div>
+    </body>
+</html>
